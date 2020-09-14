@@ -1,17 +1,19 @@
 class Fader
     attr_reader :output
-
+    attr_reader :size
     def initialize(fade_time = 0.5, sample_rate = 44100)
         @fader_input = []
         @output = []
         @sample_rate = sample_rate
         @fade_time = fade_time
         @fade_length = sample_rate * fade_time
+        @size = 0
     end
 
     # fader only has 1 fader_input
     def add_input(fader_input)
         @fader_input = fader_input
+        @size += fader_input.size
         @fader_input
     end
 

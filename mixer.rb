@@ -5,17 +5,20 @@ end
 
 class MultiChannelMixer < Mixer
     attr_reader :output
+    attr_reader :size
 
     def initialize
         @inputs = []
         @output = []
-        @size = 0.0
+        @channels = 0.0
+        @size = 0
     end
 
     def add_input(input)
         @inputs << input
         @inputs.sort! { |a, b| a.size <=> b.size }
-        @size += 1.0
+        @channels += 1.0
+        @size += input.size
     end
 
     def process
@@ -26,16 +29,16 @@ class MultiChannelMixer < Mixer
                 next if ip.empty?
                 sum += ip.shift
             end
-            @output[i] = sum / @size
+            @output[i] = sum / @channels
         end
         len
     end
 
     def inspect
-        puts "num_inputs: #{@size}, length: #{@output.size / 44100}"
+        puts "num_inputs: #{@channels}, length: #{@output.size / 44100}"
     end
 
     def to_s
-        puts "num_inputs: #{@size}, length: #{@output.size / 44100}"
+        puts "num_inputs: #{@channels}, length: #{@output.size / 44100}"
     end
 end
