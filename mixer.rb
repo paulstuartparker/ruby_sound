@@ -18,7 +18,7 @@ class MultiChannelMixer < Mixer
         @size += 1.0
     end
 
-    def join
+    def process
         len = @inputs.last.size
         len.times.map.with_index do |sample, i|
             sum = 0.0
@@ -29,5 +29,13 @@ class MultiChannelMixer < Mixer
             @output[i] = sum / @size
         end
         len
+    end
+
+    def inspect
+        puts "num_inputs: #{@size}, length: #{@output.size / 44100}"
+    end
+
+    def to_s
+        puts "num_inputs: #{@size}, length: #{@output.size / 44100}"
     end
 end

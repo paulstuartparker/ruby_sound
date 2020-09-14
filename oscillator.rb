@@ -1,4 +1,4 @@
-class Osc
+class Oscillator
     attr_reader :output
     attr_reader :size
 
@@ -14,7 +14,7 @@ class Osc
         num_samples = @sample_rate * seconds
         @size = num_samples.to_i
         @output = num_samples.to_i.times.map { |_| get_next_sample }
-        @output
+        nil
     end
 
     def get_next_sample
@@ -32,10 +32,24 @@ class Osc
         @freq = freq
         set_period_position_delta
     end
+
+    def inspect
+        puts "frequency: #{@freq}, amplitude: #{@amplitude}, sample_rate: #{@sample_rate}"
+    end
+
+    def to_s
+        puts "frequency: #{@freq}, amplitude: #{@amplitude}, sample_rate: #{@sample_rate}"
+    end
 end
 
-class Sin < Osc
+class Sine < Oscillator
     def wave_function
         Math.sin(@period_position * Math::PI * 2) * @amplitude
+    end
+end
+
+class Square < Oscillator
+    def wave_function
+        @period_position >= 0.5 ? @period_position : -@period_position
     end
 end
