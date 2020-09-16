@@ -54,3 +54,13 @@ class Square < Oscillator
         @period_position >= 0.5 ? @period_position : -@period_position
     end
 end
+
+class WhiteNoise < Oscillator
+    def initialize
+        super(1, 0.5)
+    end
+
+    def wave_function
+        rand(-1.0...1.0)
+    end
+end
