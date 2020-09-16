@@ -83,7 +83,6 @@ class Sounds
         fade_out.add_input(fade_in)
         fade_out.process
 
-        out = Sounds.waveshaper(fade_out.output)
-        WavWriter.write_to_file(out, 'third.wav')
+        WavWriter.write_to_file(fade_in, 'third.wav')
     end
 end
