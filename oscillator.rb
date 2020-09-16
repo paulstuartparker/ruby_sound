@@ -1,8 +1,9 @@
 class Oscillator
     attr_reader :output
     attr_reader :size
+    attr_reader :freq
 
-    def initialize(freq, amplitude, sample_rate = 44100.0)
+    def initialize(freq, amplitude = 1.0, sample_rate = 44100.0)
         @freq = freq
         @amplitude = amplitude
         @sample_rate = sample_rate

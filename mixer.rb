@@ -1,9 +1,5 @@
-require_relative './audio_node'
 
-class Mixer < AudioNode
-end
-
-class MultiChannelMixer < Mixer
+class Mixer
     attr_reader :output
     attr_reader :size
 
